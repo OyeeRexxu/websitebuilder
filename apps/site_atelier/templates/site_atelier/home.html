@@ -63,7 +63,7 @@
       <h3>{{ p.title }}</h3>
       <p class="micro">{{ p.client }} · {{ p.category }} · {{ p.year }}</p>
       <p class="excerpt">{{ p.summary }}</p>
-      <a href="/projects/" class="read">Read the feature →</a>
+      <a href="{{ site_prefix }}projects/" class="read">Read the feature →</a>
     </article>
     {% endfor %}
   </div>
@@ -106,7 +106,7 @@
 
 <section class="spread green invite">
   <h2 data-reveal>Have a project in mind?<br><em>Begin the conversation.</em></h2>
-  <a href="/contact/" class="invite-cta">Write to the studio →</a>
+  <a href="{{ site_prefix }}contact/" class="invite-cta">Write to the studio →</a>
 </section>
 
 {% endblock %}

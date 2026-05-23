@@ -27,7 +27,7 @@
       </ul>
     </div>
     <div class="service-block-cta">
-      <a href="/contact/?service={{ s.slug }}" class="btn btn--solid">Brief us on this →</a>
+      <a href="{{ site_prefix }}contact/?service={{ s.slug }}" class="btn btn--solid">Brief us on this →</a>
     </div>
   </article>
   {% endfor %}
@@ -35,7 +35,7 @@
 
 <section class="cta-band">
   <h2 data-reveal>Need <em>all five?</em></h2>
-  <a href="/contact/" class="btn btn--giant">Let's talk →</a>
+  <a href="{{ site_prefix }}contact/" class="btn btn--giant">Let's talk →</a>
 </section>
 
 {% endblock %}

@@ -13,8 +13,8 @@
     campaigns — delivered with restraint and a long view of brand value.
   </p>
   <div class="qhero-cta">
-    <a href="/contact/" class="qbtn qbtn--solid" data-magnetic>Start a conversation</a>
-    <a href="/projects/" class="qbtn qbtn--ghost" data-magnetic>See the work</a>
+    <a href="{{ site_prefix }}contact/" class="qbtn qbtn--solid" data-magnetic>Start a conversation</a>
+    <a href="{{ site_prefix }}projects/" class="qbtn qbtn--ghost" data-magnetic>See the work</a>
   </div>
 </section>
 
@@ -46,7 +46,7 @@
   </article>
 
   {% for s in services %}
-  <a href="/services/#{{ s.slug }}" class="qcard qcard--service span-2-rows-1" data-reveal data-link>
+  <a href="{{ site_prefix }}services/#{{ s.slug }}" class="qcard qcard--service span-2-rows-1" data-reveal data-link>
     <span class="qcard-num">№ {{ s.icon }} / 05</span>
     <h3>{{ s.title }}</h3>
     <p>{{ s.summary }}</p>
@@ -55,7 +55,7 @@
   {% endfor %}
 
   {% if projects.0 %}
-  <a href="/projects/" class="qcard qcard--cover span-2-rows-1" style="--cover:{{ projects.0.cover_color }}" data-reveal data-link>
+  <a href="{{ site_prefix }}projects/" class="qcard qcard--cover span-2-rows-1" style="--cover:{{ projects.0.cover_color }}" data-reveal data-link>
     <img src="{{ projects.0.image_url }}" alt="" loading="lazy" class="qcard-bg">
     <h3>{{ projects.0.title }}</h3>
     <p class="qkicker-sm">{{ projects.0.client }} · {{ projects.0.year }}</p>
@@ -64,7 +64,7 @@
   {% endif %}
 
   {% if projects.1 %}
-  <a href="/projects/" class="qcard qcard--cover span-3-rows-1" style="--cover:{{ projects.1.cover_color }}" data-reveal data-link>
+  <a href="{{ site_prefix }}projects/" class="qcard qcard--cover span-3-rows-1" style="--cover:{{ projects.1.cover_color }}" data-reveal data-link>
     <img src="{{ projects.1.image_url }}" alt="" loading="lazy" class="qcard-bg">
     <h3>{{ projects.1.title }}</h3>
     <p class="qkicker-sm">{{ projects.1.client }} · {{ projects.1.year }}</p>
@@ -84,7 +84,7 @@
   </article>
 
   {% if projects.2 %}
-  <a href="/projects/" class="qcard qcard--cover span-3-rows-1" style="--cover:{{ projects.2.cover_color }}" data-reveal data-link>
+  <a href="{{ site_prefix }}projects/" class="qcard qcard--cover span-3-rows-1" style="--cover:{{ projects.2.cover_color }}" data-reveal data-link>
     <img src="{{ projects.2.image_url }}" alt="" loading="lazy" class="qcard-bg">
     <h3>{{ projects.2.title }}</h3>
     <p class="qkicker-sm">{{ projects.2.client }} · {{ projects.2.year }}</p>
@@ -100,7 +100,7 @@
   </header>
   <div class="qwork-grid">
     {% for p in projects %}
-    <a href="/projects/" class="qwork-card" data-reveal style="--cover:{{ p.cover_color }}" data-link data-magnetic>
+    <a href="{{ site_prefix }}projects/" class="qwork-card" data-reveal style="--cover:{{ p.cover_color }}" data-link data-magnetic>
       <div class="qwork-cover">
         <img src="{{ p.image_url }}" alt="{{ p.title }}" loading="lazy">
       </div>

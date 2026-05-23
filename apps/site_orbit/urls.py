@@ -2,9 +2,10 @@ from django.urls import path
 from . import views
 
 app_name = "orbit"
+
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("services/", views.services, name="services"),
-    path("projects/", views.projects, name="projects"),
-    path("contact/", views.contact, name="contact"),
+    path("",           views.home,     name="home"),
+    path("services/",  views.services, name="services"),
+    path("projects/",  views.projects, name="projects"),
+    path("contact/",   views.contact,  name="contact"),
 ]

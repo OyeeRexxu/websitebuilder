@@ -16,8 +16,8 @@
       end-to-end campaigns — designed as a single connected universe.
     </p>
     <div class="hero-cta">
-      <a href="/contact/" class="btn btn--primary">Enter the studio →</a>
-      <a href="/projects/" class="btn btn--ghost">Explore the worlds</a>
+      <a href="{{ site_prefix }}contact/" class="btn btn--primary">Enter the studio →</a>
+      <a href="{{ site_prefix }}projects/" class="btn btn--ghost">Explore the worlds</a>
     </div>
   </div>
   <div class="hero-coords">
@@ -76,7 +76,7 @@
   </header>
   <div class="world-grid">
     {% for p in projects %}
-    <a href="/projects/" class="world-card" style="--cover:{{ p.cover_color }}" data-reveal data-tilt>
+    <a href="{{ site_prefix }}projects/" class="world-card" style="--cover:{{ p.cover_color }}" data-reveal data-tilt>
       <div class="world-cover">
         <img src="{{ p.image_url }}" alt="{{ p.title }}" loading="lazy">
       </div>
@@ -93,7 +93,7 @@
 
 <section class="orbit-cta">
   <h2 data-reveal>Ready to <em>build</em> something with us?</h2>
-  <a href="/contact/" class="btn btn--giant">Open a channel ↗</a>
+  <a href="{{ site_prefix }}contact/" class="btn btn--giant">Open a channel ↗</a>
 </section>
 
 {% endblock %}
