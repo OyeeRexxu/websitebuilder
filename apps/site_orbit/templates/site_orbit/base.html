@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.classList.add('js');</script>
+  {% include "_meta.html" %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/site_orbit/orbit.css">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="orbit">
+  <canvas id="orbit-canvas" aria-hidden="true"></canvas>
+  <div class="canvas-veil" aria-hidden="true"></div>
+  <div class="grain"></div>
+
+  <header class="nav">
+    <a href="/" class="brand">
+      <span class="brand-glyph">◐</span>
+      <span class="brand-name">ORBIT</span>
+      <span class="brand-version">v.26</span>
+    </a>
+    <nav class="links">
+      <a href="/" data-nav>Home</a>
+      <a href="/services/" data-nav>Capabilities</a>
+      <a href="/projects/" data-nav>Worlds</a>
+      <a href="/contact/" data-nav class="cta">Open a channel ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block body %}{% endblock %}
+  </main>
+
+  <footer class="ground">
+    <div class="ground-inner">
+      <h2 class="ground-title">
+        <span class="ground-glyph">◐</span>
+        Build worlds.<br>
+        <em>Not just websites.</em>
+      </h2>
+      <div class="ground-grid">
+        <div>
+          <p class="micro">Signal</p>
+          <a href="mailto:hello@studio-refraction.com">hello@studio-refraction.com</a><br>
+          <a href="tel:+10000000000">+1 (000) 000 0000</a>
+        </div>
+        <div>
+          <p class="micro">Coordinates</p>
+          <p>40.6782° N · 73.9442° W<br>Brooklyn · London · Mumbai</p>
+        </div>
+        <div>
+          <p class="micro">Channels</p>
+          <p><a href="#">IG</a> · <a href="#">LI</a> · <a href="#">YT</a> · <a href="#">Vimeo</a></p>
+        </div>
+        <div>
+          <p class="micro">Other refractions</p>
+          <p>
+            <a href="http://pulse.localhost:8000/">Pulse</a> ·
+            <a href="http://atelier.localhost:8000/">Atelier</a> ·
+            <a href="http://signal.localhost:8000/">Signal</a> ·
+            <a href="http://quiet.localhost:8000/">Quiet</a>
+          </p>
+        </div>
+      </div>
+      <p class="ground-meta">© Studio Refraction — Orbit edition · No tracking · No cookies</p>
+    </div>
+  </footer>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+  <script type="module" src="/static/site_orbit/orbit.js"></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

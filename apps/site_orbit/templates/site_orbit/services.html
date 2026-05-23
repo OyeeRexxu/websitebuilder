@@ -1,0 +1,43 @@
+{% extends "site_orbit/base.html" %}
+{% block body %}
+
+<section class="page-head" data-scene="services">
+  <p class="kicker">— Capabilities — index</p>
+  <h1>
+    <span class="line">Five disciplines.</span>
+    <span class="line"><em>One studio.</em></span>
+  </h1>
+  <p class="lede">
+    Each capability is a self-contained system. Most clients use two or three;
+    the most ambitious clients use all five and treat the studio as a single
+    in-house team that ships across every touchpoint.
+  </p>
+</section>
+
+<section class="capabilities-deep">
+  {% for s in services %}
+  <article class="cap-deep" data-reveal style="--accent:{{ s.accent_color|default:'#7C5CFF' }}">
+    <div class="cap-deep-head">
+      <span class="micro">— Capability {{ s.icon }} / 05</span>
+      <h2>{{ s.title }}</h2>
+      <p class="lede">{{ s.summary }}</p>
+    </div>
+    <div class="cap-deep-body">
+      <p>{{ s.body }}</p>
+      <div class="cap-deep-list">
+        <p class="micro">Deliverables</p>
+        <ul>
+          {% for d in s.deliverable_list %}<li>{{ d }}</li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="orbit-cta">
+  <h2 data-reveal>Need <em>all five?</em></h2>
+  <a href="/contact/" class="btn btn--giant">Open a channel ↗</a>
+</section>
+
+{% endblock %}

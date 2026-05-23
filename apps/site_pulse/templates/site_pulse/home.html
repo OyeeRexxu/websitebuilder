@@ -1,0 +1,110 @@
+{% extends "site_pulse/base.html" %}
+{% block body %}
+
+<section class="hero">
+  <span class="hero-kicker">★ Digital marketing — loud.</span>
+
+  <h1 class="hero-shout" data-explode>
+    <span class="word">We</span>
+    <span class="word is-yellow">make</span>
+    <span class="word is-outline">brands</span>
+    <br>
+    <span class="word">un</span><span class="word is-pink">ignor</span><span class="word is-yellow">able</span>
+    <br>
+    <span class="word is-ink">on every</span>
+    <span class="word">feed.</span>
+  </h1>
+
+  <div class="hero-bottom">
+    <div>
+      <p class="hero-blurb">
+        Studio Refraction is a digital marketing agency for <strong>content</strong>,
+        <strong>AI-led production</strong>, <strong>influencer programs</strong>,
+        <strong>shoots</strong>, and <strong>end-to-end campaigns</strong>. We build
+        always-on systems that compound across every platform you ship on.
+      </p>
+      <div class="hero-cta">
+        <a href="/contact/" class="btn btn--solid">Start a project →</a>
+        <a href="/projects/" class="btn btn--ghost">See the work</a>
+      </div>
+    </div>
+    <div class="hero-stack">
+      <span class="sticker">42M <span class="star">★</span> Last campaign</span>
+      <span class="sticker">120+ creators in net</span>
+      <span class="sticker">14× simultaneous markets</span>
+    </div>
+  </div>
+</section>
+
+<section class="marquee-band" aria-hidden="true">
+  <div class="marquee-row r1">
+    <span>SOCIAL <span class="dot"></span> AI <span class="dot"></span> INFLUENCER <span class="dot"></span> SHOOTS <span class="dot"></span> CAMPAIGNS <span class="dot"></span></span>
+    <span>SOCIAL <span class="dot"></span> AI <span class="dot"></span> INFLUENCER <span class="dot"></span> SHOOTS <span class="dot"></span> CAMPAIGNS <span class="dot"></span></span>
+  </div>
+  <div class="marquee-row r2">
+    <span>★ LOUD ★ HONEST ★ FAST ★ ACCOUNTABLE ★ LOUD ★ HONEST ★ FAST ★ ACCOUNTABLE ★</span>
+    <span>★ LOUD ★ HONEST ★ FAST ★ ACCOUNTABLE ★ LOUD ★ HONEST ★ FAST ★ ACCOUNTABLE ★</span>
+  </div>
+  <div class="marquee-row r3">
+    <span>BUILT FOR THE FEED — BUILT FOR THE FEED — BUILT FOR THE FEED — BUILT FOR THE FEED —</span>
+    <span>BUILT FOR THE FEED — BUILT FOR THE FEED — BUILT FOR THE FEED — BUILT FOR THE FEED —</span>
+  </div>
+</section>
+
+<section class="services-wall">
+  <h2 class="services-shout" data-reveal>What <em>we</em> ship.</h2>
+  <div class="sticker-pile">
+    {% for s in services %}
+    <article class="sticker-card" data-reveal>
+      <span class="sticker-num">№ {{ s.icon }} / 05</span>
+      <h3>{{ s.title }}</h3>
+      <p>{{ s.summary }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="featured-pin" id="pin-section">
+  <div class="pin-stage">
+    <h2 class="pin-shout" data-reveal>Featured <em>work.</em></h2>
+    <div class="pin-track" id="pin-track">
+      {% for p in projects %}
+      <article class="pin-card" data-rot style="--cover:{{ p.cover_color }}">
+        <div class="pin-card-image" aria-hidden="true">
+          <img src="{{ p.image_url }}" alt="" loading="lazy">
+        </div>
+        <header>
+          <span>№ {{ forloop.counter|stringformat:"02d" }}</span>
+          <span>{{ p.year }}</span>
+        </header>
+        <h3>{{ p.title }}</h3>
+        <span class="client">{{ p.client }} · {{ p.category }}</span>
+        <p class="summary">{{ p.summary }}</p>
+        <div class="metrics">
+          {% for k, v in p.metric_pairs %}
+          <div><strong>{{ v }}</strong><span>{{ k }}</span></div>
+          {% endfor %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="quotes-wall">
+  <div class="quotes-wall-inner">
+    {% for t in testimonials %}
+    <figure class="quote-card" data-reveal>
+      <blockquote class="quote-pull">"{{ t.quote }}"</blockquote>
+      <figcaption class="quote-cap">— {{ t.author }} / {{ t.role }} / {{ t.company }}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="cta-band">
+  <h2 data-reveal>Ready to make<br><em>noise?</em></h2>
+  <a href="/contact/" class="btn btn--giant">Tell us about your brand →</a>
+</section>
+
+{% endblock %}

@@ -1,0 +1,215 @@
+[
+  {
+    "model": "core.service",
+    "pk": 1,
+    "fields": {
+      "title": "Social-First Content",
+      "slug": "social-first-content",
+      "summary": "Always-on social content that compounds — stills, video, motion, copy.",
+      "body": "We build always-on content engines designed for the feed. Strategy, calendars, on-set production and weekly iteration based on what the algorithm tells us. We obsess over hooks, retention curves, and the small details that move shares.",
+      "icon": "01",
+      "accent_color": "#FF3B00",
+      "order": 1,
+      "deliverables": "Monthly content systems\nReels, TikTok, Shorts\nCarousels and stills\nPlatform-native copy\nWeekly performance read"
+    }
+  },
+  {
+    "model": "core.service",
+    "pk": 2,
+    "fields": {
+      "title": "AI-Led Production",
+      "slug": "ai-led-production",
+      "summary": "Generative pipelines for ads, visuals, and personalised content at scale.",
+      "body": "Stable-diffusion-grade assets meet broadcast-grade taste. We design AI-assisted pipelines that generate hundreds of variants for testing — without flattening your brand into the model average.",
+      "icon": "02",
+      "accent_color": "#7C5CFF",
+      "order": 2,
+      "deliverables": "Generative campaigns\nVariant testing at scale\nBrand-trained models\nProduct photography augmentation\nAI motion + lip-sync"
+    }
+  },
+  {
+    "model": "core.service",
+    "pk": 3,
+    "fields": {
+      "title": "Influencer Management",
+      "slug": "influencer-management",
+      "summary": "Casting, contracting, content rights — managed end-to-end.",
+      "body": "From micro to macro. We source talent that maps to your audience, negotiate deal terms, brief creatively, and own the relationship through delivery and post-campaign reporting.",
+      "icon": "03",
+      "accent_color": "#FF00C8",
+      "order": 3,
+      "deliverables": "Talent sourcing & vetting\nDeal negotiation\nCreative briefs\nUsage rights & paid amplification\nPerformance reporting"
+    }
+  },
+  {
+    "model": "core.service",
+    "pk": 4,
+    "fields": {
+      "title": "Shoots & Production",
+      "slug": "shoots-and-production",
+      "summary": "Photo, film, and motion — in-studio, on-location, or remote.",
+      "body": "A full production capability across stills, film and motion. We pre-produce ruthlessly so the shoot day is a creative day — not a logistics one. Studios, locations, casting, crew, post.",
+      "icon": "04",
+      "accent_color": "#0F766E",
+      "order": 4,
+      "deliverables": "Photography & film\nStudio + location\nCasting & crew\nPost & motion graphics\n2D / 3D / VFX"
+    }
+  },
+  {
+    "model": "core.service",
+    "pk": 5,
+    "fields": {
+      "title": "Campaign Execution",
+      "slug": "campaign-execution",
+      "summary": "Strategy → creative → media → measurement, end to end.",
+      "body": "We hold the whole campaign: insight, big idea, channel plan, creative production, media buy, and a reporting loop that's honest about what worked and what didn't.",
+      "icon": "05",
+      "accent_color": "#1A1A1A",
+      "order": 5,
+      "deliverables": "Big idea & strategy\nIntegrated channel plan\nPaid media buying\nWeekly optimisation\nAttribution & reporting"
+    }
+  },
+
+  {
+    "model": "core.project",
+    "pk": 1,
+    "fields": {
+      "title": "Surfaces",
+      "slug": "nokai-surfaces",
+      "client": "Nokai Skincare",
+      "category": "Brand Campaign",
+      "year": 2026,
+      "summary": "A six-week launch that turned a niche serum into a category contender.",
+      "body": "Heroes, social cut-downs, a 40-creator influencer program, and an OOH activation in three cities. Built around the insight that consumers don't want skincare science — they want skincare proof.",
+      "cover_color": "#FF3B00",
+      "tags": "Beauty, Launch, Influencer, Production",
+      "featured": true,
+      "order": 1,
+      "metrics": "Reach | 42M impressions\nUGC | 1.2k creator videos\nLift | +218% brand search\nSell-through | 94% in 30 days"
+    }
+  },
+  {
+    "model": "core.project",
+    "pk": 2,
+    "fields": {
+      "title": "Nightform",
+      "slug": "loomi-nightform",
+      "client": "Loomi Audio",
+      "category": "Product Launch",
+      "year": 2025,
+      "summary": "AI-generated hero spots in 14 languages — same brand, no translation feel.",
+      "body": "A brand-trained generative pipeline that produced regional hero films for a single global flagship launch. Each market got something native, not localised.",
+      "cover_color": "#7C5CFF",
+      "tags": "Tech, AI, Global, Film",
+      "featured": true,
+      "order": 2,
+      "metrics": "Markets | 14 launched simultaneously\nCost | -64% vs traditional production\nQuality | 100% passed brand review"
+    }
+  },
+  {
+    "model": "core.project",
+    "pk": 3,
+    "fields": {
+      "title": "Open Air",
+      "slug": "vell-open-air",
+      "client": "Vell Beverages",
+      "category": "Always-On Social",
+      "year": 2025,
+      "summary": "12 months of always-on content that turned a beverage into a personality.",
+      "body": "A weekly content engine across Reels, TikTok, and YouTube Shorts. We treated the brand like a recurring character — same voice, surprising contexts.",
+      "cover_color": "#0F766E",
+      "tags": "Beverage, Social, Content, Always-on",
+      "featured": true,
+      "order": 3,
+      "metrics": "Posts | 312 in 12 months\nFollowers | 11k → 384k\nEarned media | 4 features in industry press"
+    }
+  },
+  {
+    "model": "core.project",
+    "pk": 4,
+    "fields": {
+      "title": "Run Club",
+      "slug": "harlo-run-club",
+      "client": "Harlo Apparel",
+      "category": "Influencer Program",
+      "year": 2025,
+      "summary": "120 runners. Twelve cities. One product story told a hundred different ways.",
+      "body": "Casting, contracting, briefing, and amplification for a multi-city run-club influencer program. We treated each creator as a co-author, not a billboard.",
+      "cover_color": "#FF00C8",
+      "tags": "Apparel, Influencer, Community",
+      "featured": true,
+      "order": 4,
+      "metrics": "Creators | 120 contracted\nMedia value | $1.4M earned\nE-com | +37% conversion lift"
+    }
+  },
+  {
+    "model": "core.project",
+    "pk": 5,
+    "fields": {
+      "title": "Quiet Hours",
+      "slug": "moss-quiet-hours",
+      "client": "Moss Furniture",
+      "category": "Brand Film",
+      "year": 2024,
+      "summary": "A meditation on living slowly — three minutes, no voiceover, all atmosphere.",
+      "body": "A brand film that resisted every urge to over-explain. Shot in two homes, scored by a Berlin composer, edited until silence did the talking.",
+      "cover_color": "#1A1A1A",
+      "tags": "Film, Brand, Editorial",
+      "featured": false,
+      "order": 5,
+      "metrics": "Awards | 3 industry nods\nView-through | 81% completion\nBrand recall | +44%"
+    }
+  },
+  {
+    "model": "core.project",
+    "pk": 6,
+    "fields": {
+      "title": "Future Tense",
+      "slug": "ondo-future-tense",
+      "client": "Ondo Mobility",
+      "category": "Integrated Campaign",
+      "year": 2024,
+      "summary": "An integrated launch for an EV brand that hated the word 'sustainable.'",
+      "body": "A campaign that refused green clichés and instead leaned into the visceral feel of acceleration. Hero film, OOH, social, influencer, dealer activation.",
+      "cover_color": "#FF3B00",
+      "tags": "Auto, Integrated, EV, Launch",
+      "featured": false,
+      "order": 6,
+      "metrics": "Reach | 78M impressions\nTest drives | 12k booked\nCAC | -28% vs control"
+    }
+  },
+
+  {
+    "model": "core.testimonial",
+    "pk": 1,
+    "fields": {
+      "quote": "They moved like a team that's been in our brand for years. By week three we couldn't tell which work was ours and which was theirs — which is the highest compliment.",
+      "author": "Iris Nguyen",
+      "role": "VP Brand",
+      "company": "Nokai Skincare",
+      "order": 1
+    }
+  },
+  {
+    "model": "core.testimonial",
+    "pk": 2,
+    "fields": {
+      "quote": "The AI pipeline they built for us let us launch in 14 markets simultaneously and not a single market felt translated. That's a new kind of agency.",
+      "author": "Damir Sato",
+      "role": "Global CMO",
+      "company": "Loomi Audio",
+      "order": 2
+    }
+  },
+  {
+    "model": "core.testimonial",
+    "pk": 3,
+    "fields": {
+      "quote": "Most agencies sell you the deck. This team sold us the work. Then they made it.",
+      "author": "Priya Raman",
+      "role": "Founder",
+      "company": "Vell Beverages",
+      "order": 3
+    }
+  }
+]

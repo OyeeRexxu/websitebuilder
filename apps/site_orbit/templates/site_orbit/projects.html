@@ -1,0 +1,41 @@
+{% extends "site_orbit/base.html" %}
+{% block body %}
+
+<section class="page-head" data-scene="projects">
+  <p class="kicker">— Worlds — atlas</p>
+  <h1>
+    <span class="line">An atlas of</span>
+    <span class="line"><em>built worlds.</em></span>
+  </h1>
+</section>
+
+<section class="atlas">
+  {% for p in projects %}
+  <article class="world-deep" data-reveal style="--cover:{{ p.cover_color }}">
+    <div class="world-deep-cover" data-tilt>
+      <img src="{{ p.image_url }}" alt="{{ p.title }} — {{ p.client }}" loading="lazy">
+    </div>
+    <div class="world-deep-body">
+      <span class="micro">{{ p.client }} · {{ p.category }} · {{ p.year }}</span>
+      <h2>{{ p.title }}</h2>
+      <p class="lede">{{ p.summary }}</p>
+      <p>{{ p.body }}</p>
+      <ul class="tags">
+        {% for t in p.tag_list %}<li>{{ t }}</li>{% endfor %}
+      </ul>
+      <div class="metrics">
+        {% for k, v in p.metric_pairs %}
+        <div><strong>{{ v }}</strong><span>{{ k }}</span></div>
+        {% endfor %}
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="orbit-cta">
+  <h2 data-reveal>Build the next one <em>with us.</em></h2>
+  <a href="/contact/" class="btn btn--giant">Open a channel ↗</a>
+</section>
+
+{% endblock %}

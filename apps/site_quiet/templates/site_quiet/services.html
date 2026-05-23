@@ -1,0 +1,30 @@
+{% extends "site_quiet/base.html" %}
+{% block barba_ns %}services{% endblock %}
+{% block body %}
+
+<section class="qpage-head" data-reveal>
+  <p class="qkicker">Services</p>
+  <h1>What we offer, <em>quietly.</em></h1>
+  <p class="qlede">Each capability is a self-contained system, led by a senior practitioner. You can hire us for one, several, or all five — we recommend starting where the pressure is highest.</p>
+</section>
+
+<section class="qservices">
+  {% for s in services %}
+  <article class="qservice" id="{{ s.slug }}" data-reveal style="--accent:{{ s.accent_color|default:'#0F766E' }}">
+    <div class="qservice-head">
+      <span class="qservice-num">№ {{ s.icon }}</span>
+      <h2>{{ s.title }}</h2>
+    </div>
+    <div class="qservice-body">
+      <p class="qservice-lede">{{ s.summary }}</p>
+      <p>{{ s.body }}</p>
+    </div>
+    <aside class="qservice-list">
+      <p class="qkicker-sm">Deliverables</p>
+      <ul>{% for d in s.deliverable_list %}<li>{{ d }}</li>{% endfor %}</ul>
+    </aside>
+  </article>
+  {% endfor %}
+</section>
+
+{% endblock %}

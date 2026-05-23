@@ -1,0 +1,46 @@
+{% extends "site_signal/base.html" %}
+{% block body %}
+
+<section class="cabinet cabinet-bezel">
+<div class="page-head">
+  <p class="micro">CH.03 — ARCHIVE.FULL</p>
+  <h1>
+    <span>EVERY</span>
+    <span class="accent">DROP</span>
+    <span>ON.RECORD</span>
+  </h1>
+</div>
+</section>
+
+<section class="drops-full">
+  {% for p in projects %}
+  <article class="drop-row" data-reveal style="--cover:{{ p.cover_color }}">
+    <div class="drop-row-tape">
+      <span class="tape-num">DROP {{ forloop.counter|stringformat:"02d" }}</span>
+      <span class="tape-year">{{ p.year }}</span>
+    </div>
+    <div class="drop-row-cover">
+      <img src="{{ p.image_url }}" alt="{{ p.title }}" loading="lazy">
+    </div>
+    <div class="drop-row-body">
+      <h2>{{ p.title }}</h2>
+      <p class="micro">{{ p.client }} · {{ p.category }}</p>
+      <p class="excerpt">{{ p.summary }}</p>
+      <p>{{ p.body }}</p>
+      <ul class="tags">{% for t in p.tag_list %}<li>#{{ t }}</li>{% endfor %}</ul>
+      <div class="metrics">
+        {% for k, v in p.metric_pairs %}
+        <div><strong>{{ v }}</strong><span>{{ k }}</span></div>
+        {% endfor %}
+      </div>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="signal-cta">
+  <h2>NEXT.DROP&nbsp;=&nbsp;YOU?</h2>
+  <a href="/contact/" class="btn btn--primary btn--giant">Tap in &gt;&gt;</a>
+</section>
+
+{% endblock %}

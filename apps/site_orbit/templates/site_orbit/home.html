@@ -1,0 +1,99 @@
+{% extends "site_orbit/base.html" %}
+{% block body %}
+
+<section class="hero" data-scene="hero">
+  <div class="hero-content">
+    <p class="kicker">— Studio Refraction — Orbit edition</p>
+    <h1>
+      <span class="line">We build</span>
+      <span class="line"><em>immersive worlds</em></span>
+      <span class="line">for brands that</span>
+      <span class="line">move <em>forward.</em></span>
+    </h1>
+    <p class="lede">
+      A digital marketing studio that treats brand work like worldbuilding.
+      Social content, AI-led production, influencer programs, shoots and
+      end-to-end campaigns — designed as a single connected universe.
+    </p>
+    <div class="hero-cta">
+      <a href="/contact/" class="btn btn--primary">Enter the studio →</a>
+      <a href="/projects/" class="btn btn--ghost">Explore the worlds</a>
+    </div>
+  </div>
+  <div class="hero-coords">
+    <div><span class="micro">Lat</span> 40.678N</div>
+    <div><span class="micro">Lon</span> 73.944W</div>
+    <div><span class="micro">Local</span> <span data-clock>—</span></div>
+    <div><span class="micro">Sys</span> orbit.v26</div>
+  </div>
+</section>
+
+<section class="stats" data-reveal>
+  <div class="stat">
+    <span class="stat-num" data-count="42">0</span>
+    <span class="stat-unit">M</span>
+    <span class="stat-label">Impressions / latest campaign</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" data-count="120">0</span>
+    <span class="stat-unit">+</span>
+    <span class="stat-label">Creators in our network</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" data-count="14">0</span>
+    <span class="stat-unit">×</span>
+    <span class="stat-label">Markets simultaneously launched</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" data-count="64">0</span>
+    <span class="stat-unit">%</span>
+    <span class="stat-label">Cost reduction vs traditional production</span>
+  </div>
+</section>
+
+<section class="capabilities">
+  <header class="section-head">
+    <p class="micro">— Capabilities</p>
+    <h2 data-reveal>Five disciplines.<br><em>One connected studio.</em></h2>
+  </header>
+  <div class="cap-grid">
+    {% for s in services %}
+    <article class="cap-card" data-reveal data-tilt>
+      <div class="cap-glow" style="--glow:{{ s.accent_color|default:'#7C5CFF' }}"></div>
+      <span class="cap-num">{{ s.icon }}</span>
+      <h3>{{ s.title }}</h3>
+      <p>{{ s.summary }}</p>
+      <span class="cap-arrow">→</span>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="worlds">
+  <header class="section-head">
+    <p class="micro">— Selected worlds</p>
+    <h2 data-reveal>Brands we've built worlds for.</h2>
+  </header>
+  <div class="world-grid">
+    {% for p in projects %}
+    <a href="/projects/" class="world-card" style="--cover:{{ p.cover_color }}" data-reveal data-tilt>
+      <div class="world-cover">
+        <img src="{{ p.image_url }}" alt="{{ p.title }}" loading="lazy">
+      </div>
+      <div class="world-meta">
+        <span class="micro">{{ p.client }} — {{ p.year }}</span>
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.summary }}</p>
+        <span class="world-link">Enter the world →</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="orbit-cta">
+  <h2 data-reveal>Ready to <em>build</em> something with us?</h2>
+  <a href="/contact/" class="btn btn--giant">Open a channel ↗</a>
+</section>
+
+{% endblock %}

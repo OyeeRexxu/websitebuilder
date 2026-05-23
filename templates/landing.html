@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  {% include "_meta.html" %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/shared/landing.css">
+</head>
+<body>
+  <header class="landing-header">
+    <a class="brand" href="/">Studio Refraction</a>
+    <nav>
+      <a href="/admin/">Admin</a>
+      <a href="/sitemap.xml">Sitemap</a>
+    </nav>
+  </header>
+
+  <main class="landing">
+    <section class="hero">
+      <p class="kicker">Five takes on one agency</p>
+      <h1>
+        One studio.<br>
+        <em>Five</em> design languages.<br>
+        <span class="under">Same</span> obsession with the work.
+      </h1>
+      <p class="lede">
+        Studio Refraction is a digital marketing agency for content, production, influencer marketing
+        and end-to-end campaign execution. This index page lets you walk through five completely
+        different design and animation treatments of the same agency story — each one a separate site.
+      </p>
+    </section>
+
+    <section class="sites" aria-label="The five sites">
+      {% for key, meta in all_sites.items %}
+      <a class="site-card site-card--{{ key }}" href="http://{{ key }}.localhost:8000/">
+        <span class="num">0{{ forloop.counter }}</span>
+        <h2>{{ meta.name }}</h2>
+        <p class="tagline">{{ meta.tagline }}</p>
+        <span class="cta">Enter <span class="arrow">→</span></span>
+        <span class="swatch" style="background:{{ meta.accent }}"></span>
+      </a>
+      {% endfor %}
+    </section>
+
+    <section class="featured">
+      <h2>Featured work, shown in every site</h2>
+      <p class="muted">The same case studies, rendered in five different visual systems.</p>
+      <div class="featured-grid">
+        {% for p in featured_projects %}
+        <article class="featured-card" style="--cover:{{ p.cover_color }}">
+          <header>
+            <span class="year">{{ p.year }}</span>
+            <span class="cat">{{ p.category }}</span>
+          </header>
+          <h3>{{ p.title }}</h3>
+          <p class="client">{{ p.client }}</p>
+          <p>{{ p.summary }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <footer class="landing-footer">
+    <p>&copy; Studio Refraction — fictional case studies, real craft.</p>
+  </footer>
+</body>
+</html>

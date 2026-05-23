@@ -1,0 +1,43 @@
+{% extends "site_orbit/base.html" %}
+{% block body %}
+
+<section class="page-head" data-scene="contact">
+  <p class="kicker">— Open a channel</p>
+  <h1>
+    <span class="line">Send a signal.</span>
+    <span class="line"><em>We listen.</em></span>
+  </h1>
+  <p class="lede">
+    Tell us about your brand, your timeline, and the world you want to build.
+    We reply within one working day, always to a human, never to a queue.
+  </p>
+</section>
+
+<section class="channel">
+  <div class="channel-grid">
+    <form method="post" class="channel-form glass">
+      {% csrf_token %}
+      {% if messages %}{% for m in messages %}<p class="flash">{{ m }}</p>{% endfor %}{% endif %}
+      <div class="grid-2">
+        <label><span>Name</span>{{ form.name }}</label>
+        <label><span>Email</span>{{ form.email }}</label>
+        <label><span>Company</span>{{ form.company }}</label>
+        <label><span>Budget</span>{{ form.budget }}</label>
+      </div>
+      <label class="full"><span>Tell us about the project</span>{{ form.message }}</label>
+      <button type="submit" class="btn btn--primary">Transmit ↗</button>
+    </form>
+    <aside class="channel-aside glass">
+      <p class="micro">Direct line</p>
+      <a href="mailto:hello@studio-refraction.com" class="big">hello@studio-refraction.com</a>
+      <p class="micro">Coordinates</p>
+      <p>Brooklyn · London · Mumbai</p>
+      <p class="micro">Hours</p>
+      <p>Mon — Fri · 09:00 — 19:00 local</p>
+      <p class="micro">Latency</p>
+      <p>≤ 1 working day, always to a human.</p>
+    </aside>
+  </div>
+</section>
+
+{% endblock %}

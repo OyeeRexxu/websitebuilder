@@ -1,0 +1,91 @@
+{% extends "site_signal/base.html" %}
+{% block body %}
+
+<section class="cabinet cabinet-bezel">
+<div class="hero">
+  <div class="hero-overlay">
+    <span class="bug top-left">CAM 01</span>
+    <span class="bug top-right">▶ LIVE</span>
+    <span class="bug bot-left">SP 25.000</span>
+    <span class="bug bot-right">TC 00:00:14:12</span>
+  </div>
+
+  <div class="hero-inner">
+    <p class="hero-tagline">LOADING.SIGNAL — DIGITAL MARKETING — V.26</p>
+    <h1 class="hero-headline">
+      <span>WE MAKE</span>
+      <span class="accent">INTERNET</span>
+      <span>BRANDS</span>
+      <span class="accent2">UNFORGETTABLE</span>
+    </h1>
+    <p class="hero-sub">
+      Digital marketing studio for content, AI production, influencer marketing,
+      shoots, and end-to-end campaigns — built for the brands that live on the feed.
+    </p>
+    <div class="hero-cta">
+      <a href="/contact/" class="btn btn--primary">Tap in &gt;&gt;</a>
+      <a href="/projects/" class="btn btn--ghost">See the drops</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="ticker-band" aria-hidden="true">
+  <div class="marquee-track">
+    <span>★ SOCIAL ★ AI ★ INFLUENCER ★ PRODUCTION ★ CAMPAIGNS ★ SOCIAL ★ AI ★ INFLUENCER ★ PRODUCTION ★ CAMPAIGNS ★</span>
+    <span>★ SOCIAL ★ AI ★ INFLUENCER ★ PRODUCTION ★ CAMPAIGNS ★ SOCIAL ★ AI ★ INFLUENCER ★ PRODUCTION ★ CAMPAIGNS ★</span>
+  </div>
+</section>
+
+<section class="services-tape">
+  <header class="section-head">
+    <p class="micro">CH.02 — CAPABILITIES</p>
+    <h2>WHAT.WE.SHIP</h2>
+  </header>
+  {# Matter.js physics stage — sticker cards fall, collide, and are draggable #}
+  <div class="physics-stage" id="physics-stage" data-stickers='{"items": [
+    {% for s in services %}
+      {"num": "{{ s.icon }}", "title": "{{ s.title|escapejs }}"}{% if not forloop.last %},{% endif %}
+    {% endfor %}
+  ]}'></div>
+</section>
+
+<section class="drops">
+  <header class="section-head">
+    <p class="micro">CH.03 — RECENT DROPS</p>
+    <h2>FROM.THE.ARCHIVE</h2>
+  </header>
+  <div class="drops-grid">
+    {% for p in projects %}
+    <article class="drop" data-reveal style="--cover:{{ p.cover_color }}">
+      <div class="drop-cover">
+        <img src="{{ p.image_url }}" alt="{{ p.title }}" loading="lazy">
+        <span class="drop-num">№ {{ forloop.counter|stringformat:"02d" }}</span>
+        <span class="drop-tape">DROP {{ p.year }}</span>
+      </div>
+      <div class="drop-body">
+        <h3>{{ p.title }}</h3>
+        <p class="micro">{{ p.client }} · {{ p.category }}</p>
+        <p>{{ p.summary }}</p>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="testimonials-strip">
+  {% for t in testimonials %}
+  <figure class="quote-card" data-reveal>
+    <span class="quote-mark">"</span>
+    <blockquote>{{ t.quote }}</blockquote>
+    <figcaption>— {{ t.author }} / {{ t.role }} / <strong>{{ t.company }}</strong></figcaption>
+  </figure>
+  {% endfor %}
+</section>
+
+<section class="signal-cta">
+  <h2>JOIN&nbsp;THE&nbsp;SIGNAL.</h2>
+  <a href="/contact/" class="btn btn--primary btn--giant">Tap in &gt;&gt;</a>
+</section>
+
+{% endblock %}

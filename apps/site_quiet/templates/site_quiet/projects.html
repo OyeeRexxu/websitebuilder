@@ -1,0 +1,31 @@
+{% extends "site_quiet/base.html" %}
+{% block barba_ns %}projects{% endblock %}
+{% block body %}
+
+<section class="qpage-head" data-reveal>
+  <p class="qkicker">Selected work</p>
+  <h1>The <em>folio.</em></h1>
+  <p class="qlede">Recent work across beauty, tech, beverage, apparel, furniture and mobility — launches, films, always-on programs, and integrated campaigns.</p>
+</section>
+
+<section class="qprojects-grid">
+  {% for p in projects %}
+  <article class="qproject" data-reveal style="--cover:{{ p.cover_color }}">
+    <div class="qproject-cover" data-tilt>
+      <img src="{{ p.image_url }}" alt="{{ p.title }} — {{ p.client }}" loading="lazy">
+    </div>
+    <div class="qproject-body">
+      <p class="qkicker-sm">{{ p.client }} · {{ p.category }} · {{ p.year }}</p>
+      <h2>{{ p.title }}</h2>
+      <p class="qproject-lede">{{ p.summary }}</p>
+      <p>{{ p.body }}</p>
+      <ul class="qtags">{% for t in p.tag_list %}<li>{{ t }}</li>{% endfor %}</ul>
+      <dl class="qmetrics">
+        {% for k, v in p.metric_pairs %}<dt>{{ k }}</dt><dd>{{ v }}</dd>{% endfor %}
+      </dl>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+{% endblock %}

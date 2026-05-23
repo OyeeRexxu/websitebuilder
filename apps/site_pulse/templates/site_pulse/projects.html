@@ -1,0 +1,48 @@
+{% extends "site_pulse/base.html" %}
+{% block body %}
+
+<section class="page-head">
+  <div class="page-head-inner">
+    <span class="kicker">★ Selected work</span>
+    <h1>
+      Evidence,<br>
+      not <em>opinions.</em>
+    </h1>
+  </div>
+</section>
+
+<section class="projects-list">
+  {% for p in projects %}
+  <article class="project-row" style="--cover:{{ p.cover_color }}" data-reveal>
+    <div class="project-row-body">
+      <header>
+        <span>{{ p.year }}</span>
+        <span>{{ p.category }}</span>
+        <span>№ {{ forloop.counter|stringformat:"02d" }}</span>
+      </header>
+      <h2 class="project-title">{{ p.title }}</h2>
+      <p class="project-client">{{ p.client }}</p>
+      <p class="project-summary">{{ p.summary }}</p>
+      <ul class="project-tags">
+        {% for t in p.tag_list %}<li>{{ t }}</li>{% endfor %}
+      </ul>
+      <div class="project-metrics">
+        {% for k, v in p.metric_pairs %}
+        <div><strong>{{ v }}</strong><span>{{ k }}</span></div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="project-row-cover" aria-hidden="true">
+      <img src="{{ p.image_url }}" alt="" loading="lazy">
+      <span class="frame"></span>
+    </div>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="cta-band">
+  <h2 data-reveal>See a <em>fit?</em></h2>
+  <a href="/contact/" class="btn btn--giant">Send a brief →</a>
+</section>
+
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "site_quiet/base.html" %}
+{% block barba_ns %}home{% endblock %}
+{% block body %}
+
+<section class="qhero" data-reveal>
+  <p class="qkicker">Studio Refraction — Quiet edition.</p>
+  <h1>
+    A digital marketing studio
+    <em>for brands that don't need to shout.</em>
+  </h1>
+  <p class="qlede">
+    Content, AI-led production, influencer programs, shoots, and end-to-end
+    campaigns — delivered with restraint and a long view of brand value.
+  </p>
+  <div class="qhero-cta">
+    <a href="/contact/" class="qbtn qbtn--solid" data-magnetic>Start a conversation</a>
+    <a href="/projects/" class="qbtn qbtn--ghost" data-magnetic>See the work</a>
+  </div>
+</section>
+
+{# Bento — 6 cols. Tiles to a perfect rectangle. No orphan rows.
+   Cell budget per row = 6 cols. Total: 6 rows × 6 cols = 36 cells.
+   feature(3×2)=6 + 2 stats(3×1)=6 + 5 services(2×1)=10 + cover(2×1)=2
+   + cover(3×1)=3 + list(3×2)=6 + cover(3×1)=3 = 36 ✓ #}
+<section class="qbento">
+  <article class="qcard qcard--feature span-3-rows-2" data-reveal>
+    <p class="qcard-label">A studio note</p>
+    <p class="qcard-quote">
+      Most agencies want to be loud. We want to be <em>remembered.</em> That changes the
+      brief, the production, and — most of all — the patience required to do
+      the work properly.
+    </p>
+    <p class="qcard-author">— Studio Refraction</p>
+  </article>
+
+  <article class="qcard qcard--stat qcard--copper span-3-rows-1" data-reveal>
+    <p class="qcard-label">Reach</p>
+    <div><span class="qcard-stat" data-count="42">0</span><span class="qcard-stat-unit">M impressions</span></div>
+    <p class="qcard-label" style="margin-top:auto;margin-bottom:0">Latest campaign</p>
+  </article>
+
+  <article class="qcard qcard--stat qcard--gold span-3-rows-1" data-reveal>
+    <p class="qcard-label">Network</p>
+    <div><span class="qcard-stat" data-count="120">0</span><span class="qcard-stat-unit">+ creators</span></div>
+    <p class="qcard-label" style="margin-top:auto;margin-bottom:0">Across our talent net</p>
+  </article>
+
+  {% for s in services %}
+  <a href="/services/#{{ s.slug }}" class="qcard qcard--service span-2-rows-1" data-reveal data-link>
+    <span class="qcard-num">№ {{ s.icon }} / 05</span>
+    <h3>{{ s.title }}</h3>
+    <p>{{ s.summary }}</p>
+    <span class="qcard-arrow">→</span>
+  </a>
+  {% endfor %}
+
+  {% if projects.0 %}
+  <a href="/projects/" class="qcard qcard--cover span-2-rows-1" style="--cover:{{ projects.0.cover_color }}" data-reveal data-link>
+    <img src="{{ projects.0.image_url }}" alt="" loading="lazy" class="qcard-bg">
+    <h3>{{ projects.0.title }}</h3>
+    <p class="qkicker-sm">{{ projects.0.client }} · {{ projects.0.year }}</p>
+    <p>{{ projects.0.summary }}</p>
+  </a>
+  {% endif %}
+
+  {% if projects.1 %}
+  <a href="/projects/" class="qcard qcard--cover span-3-rows-1" style="--cover:{{ projects.1.cover_color }}" data-reveal data-link>
+    <img src="{{ projects.1.image_url }}" alt="" loading="lazy" class="qcard-bg">
+    <h3>{{ projects.1.title }}</h3>
+    <p class="qkicker-sm">{{ projects.1.client }} · {{ projects.1.year }}</p>
+    <p>{{ projects.1.summary }}</p>
+  </a>
+  {% endif %}
+
+  <article class="qcard qcard--list span-3-rows-2" data-reveal>
+    <p class="qcard-label">What's inside the studio</p>
+    <ul>
+      <li>A 14-person team that has worked together for years.</li>
+      <li>An in-house AI production pipeline trained per client.</li>
+      <li>A creator network across beauty, tech, beverage and apparel.</li>
+      <li>Photo &amp; film production in three cities.</li>
+      <li>A weekly performance read on every campaign.</li>
+    </ul>
+  </article>
+
+  {% if projects.2 %}
+  <a href="/projects/" class="qcard qcard--cover span-3-rows-1" style="--cover:{{ projects.2.cover_color }}" data-reveal data-link>
+    <img src="{{ projects.2.image_url }}" alt="" loading="lazy" class="qcard-bg">
+    <h3>{{ projects.2.title }}</h3>
+    <p class="qkicker-sm">{{ projects.2.client }} · {{ projects.2.year }}</p>
+    <p>{{ projects.2.summary }}</p>
+  </a>
+  {% endif %}
+</section>
+
+<section class="qwork">
+  <header class="qsection-head" data-reveal>
+    <p class="qkicker">Selected work</p>
+    <h2>The work we're <em>proudest of.</em></h2>
+  </header>
+  <div class="qwork-grid">
+    {% for p in projects %}
+    <a href="/projects/" class="qwork-card" data-reveal style="--cover:{{ p.cover_color }}" data-link data-magnetic>
+      <div class="qwork-cover">
+        <img src="{{ p.image_url }}" alt="{{ p.title }}" loading="lazy">
+      </div>
+      <div class="qwork-meta">
+        <p class="qkicker-sm">{{ p.client }} · {{ p.year }}</p>
+        <h3>{{ p.title }}</h3>
+        <p>{{ p.summary }}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="qquotes">
+  {% for t in testimonials %}
+  <figure class="qquote" data-reveal>
+    <blockquote>"{{ t.quote }}"</blockquote>
+    <figcaption>— {{ t.author }}, {{ t.role }}, <strong>{{ t.company }}</strong></figcaption>
+  </figure>
+  {% endfor %}
+</section>
+
+{% endblock %}

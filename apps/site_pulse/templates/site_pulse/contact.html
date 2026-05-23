@@ -1,0 +1,58 @@
+{% extends "site_pulse/base.html" %}
+{% block body %}
+
+<section class="page-head">
+  <div class="page-head-inner">
+    <span class="kicker">★ Contact</span>
+    <h1>
+      Tell us<br>
+      something<br>
+      <em>honest.</em>
+    </h1>
+  </div>
+</section>
+
+<section class="contact-grid">
+  <div class="contact-grid-inner">
+    <div class="contact-form-wrap">
+      <form method="post" class="form" novalidate>
+        {% csrf_token %}
+        {% if messages %}{% for m in messages %}<div class="flash">{{ m }}</div>{% endfor %}{% endif %}
+        <label>
+          <span>Name</span>
+          {{ form.name }}
+        </label>
+        <label>
+          <span>Email</span>
+          {{ form.email }}
+        </label>
+        <label>
+          <span>Company</span>
+          {{ form.company }}
+        </label>
+        <label>
+          <span>Budget</span>
+          {{ form.budget }}
+        </label>
+        <label class="full">
+          <span>Brief</span>
+          {{ form.message }}
+        </label>
+        {{ form.non_field_errors }}
+        <button type="submit" class="btn btn--solid btn--giant">Send it →</button>
+      </form>
+    </div>
+    <aside class="contact-aside">
+      <h2>Or just <br>write to us.</h2>
+      <a href="mailto:hello@studio-refraction.com" class="big-email">hello@studio-refraction.com</a>
+      <p class="muted">We reply within one working day. Always to a human.</p>
+      <dl class="meta-list">
+        <dt>Studio hours</dt><dd>Mon — Fri, 09:00 — 19:00 local</dd>
+        <dt>Time zones</dt><dd>EST · GMT · IST</dd>
+        <dt>Press</dt><dd>press@studio-refraction.com</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+{% endblock %}

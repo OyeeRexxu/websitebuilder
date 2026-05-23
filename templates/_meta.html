@@ -1,0 +1,21 @@
+{# Shared <head> meta partial. Each site's base extends and uses it. #}
+<title>{{ meta.title }}</title>
+<meta name="description" content="{{ meta.description }}">
+<link rel="canonical" href="{{ meta.canonical }}">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ meta.title }}">
+<meta property="og:description" content="{{ meta.description }}">
+<meta property="og:url" content="{{ meta.canonical }}">
+<meta property="og:image" content="{{ meta.og_image }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ meta.title }}">
+<meta name="twitter:description" content="{{ meta.description }}">
+<meta name="twitter:image" content="{{ meta.og_image }}">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="{{ site_meta.accent|default:'#111111' }}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+{% for s in schemas %}{{ s }}{% endfor %}

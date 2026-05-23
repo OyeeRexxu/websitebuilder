@@ -1,0 +1,118 @@
+:root {
+  --ink: #111;
+  --paper: #f8f6f0;
+  --line: #111;
+  --muted: #555;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--paper); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.landing-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 32px; border-bottom: 1px solid var(--line);
+  position: sticky; top: 0; background: var(--paper); z-index: 10;
+}
+.landing-header .brand { font-family: 'Fraunces', serif; font-weight: 900; font-size: 20px; letter-spacing: -0.01em; }
+.landing-header nav a { font-size: 13px; margin-left: 24px; opacity: 0.6; }
+.landing-header nav a:hover { opacity: 1; }
+
+.landing { max-width: 1280px; margin: 0 auto; padding: 64px 32px 128px; }
+
+.hero { max-width: 980px; padding: 80px 0 96px; border-bottom: 1px solid var(--line); }
+.hero .kicker { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 32px; opacity: 0.6; }
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(48px, 9vw, 140px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.hero h1 em { font-style: italic; font-weight: 900; }
+.hero h1 .under { text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 12px; }
+.hero .lede { max-width: 640px; margin-top: 48px; font-size: 18px; line-height: 1.6; color: var(--muted); }
+
+.sites {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0;
+  margin-top: 64px;
+  border: 1px solid var(--line);
+}
+.site-card {
+  position: relative;
+  padding: 40px 32px 56px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  transition: background 0.4s ease, transform 0.4s ease;
+  overflow: hidden;
+}
+.site-card:last-child { border-right: none; }
+.site-card .num {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  margin-bottom: 80px;
+}
+.site-card h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: 44px;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.site-card .tagline { font-size: 14px; line-height: 1.5; color: var(--muted); max-width: 24ch; }
+.site-card .cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 32px; font-size: 13px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.15em;
+}
+.site-card .arrow { transition: transform 0.3s ease; display: inline-block; }
+.site-card:hover .arrow { transform: translateX(6px); }
+.site-card .swatch {
+  position: absolute; right: -40px; bottom: -40px;
+  width: 120px; height: 120px; border-radius: 50%;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.site-card:hover .swatch { transform: scale(4); }
+.site-card:hover { color: white; }
+.site-card:hover .tagline { color: rgba(255,255,255,0.8); }
+.site-card .num, .site-card h2, .site-card .tagline, .site-card .cta { position: relative; z-index: 1; }
+
+.featured { margin-top: 96px; }
+.featured h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(32px, 4vw, 56px);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.featured .muted { color: var(--muted); margin-bottom: 40px; }
+.featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.featured-card {
+  background: var(--paper);
+  padding: 32px;
+  position: relative;
+  min-height: 240px;
+  display: flex; flex-direction: column;
+}
+.featured-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+  background: var(--cover);
+}
+.featured-card header { display: flex; justify-content: space-between; font-size: 12px; opacity: 0.6; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.15em; }
+.featured-card h3 { font-family: 'Fraunces', serif; font-weight: 900; font-size: 32px; margin-bottom: 4px; letter-spacing: -0.01em; }
+.featured-card .client { font-size: 14px; color: var(--muted); margin-bottom: 16px; }
+.featured-card p { font-size: 14px; line-height: 1.5; color: var(--muted); }
+
+.landing-footer { padding: 32px; border-top: 1px solid var(--line); text-align: center; font-size: 12px; opacity: 0.6; }
+
+@media (max-width: 720px) {
+  .sites { grid-template-columns: 1fr; }
+  .site-card { border-right: none; }
+}

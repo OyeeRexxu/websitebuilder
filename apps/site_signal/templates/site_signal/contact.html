@@ -1,0 +1,36 @@
+{% extends "site_signal/base.html" %}
+{% block body %}
+
+<section class="cabinet cabinet-bezel">
+<div class="page-head">
+  <p class="micro">CH.04 — INBOUND.CHANNEL</p>
+  <h1>
+    <span>OPEN.A</span>
+    <span class="accent">CHANNEL</span>
+  </h1>
+</div>
+</section>
+
+<section class="contact-deck">
+  <form method="post" class="terminal-form">
+    {% csrf_token %}
+    {% if messages %}{% for m in messages %}<p class="flash">[OK] {{ m }}</p>{% endfor %}{% endif %}
+    <p class="terminal-prompt">&gt; transmit --to=studio</p>
+    <label>name → {{ form.name }}</label>
+    <label>email → {{ form.email }}</label>
+    <label>company → {{ form.company }}</label>
+    <label>budget → {{ form.budget }}</label>
+    <label>message ↓ {{ form.message }}</label>
+    <button type="submit" class="btn btn--primary btn--giant">// SEND.PACKET &gt;&gt;</button>
+  </form>
+  <aside class="contact-aside">
+    <p class="micro">// DIRECT</p>
+    <a href="mailto:hello@studio-refraction.com" class="big">hello@studio-refraction.com</a>
+    <p class="micro">// HOURS</p>
+    <p>MON—FRI · 09:00 — 19:00 LOCAL</p>
+    <p class="micro">// LATENCY</p>
+    <p>RESPONSE &lt; 24H · ALWAYS HUMAN</p>
+  </aside>
+</section>
+
+{% endblock %}

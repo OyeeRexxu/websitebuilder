@@ -1,0 +1,42 @@
+{% extends "site_atelier/base.html" %}
+{% block body %}
+
+<section class="spread sand page-head">
+  <p class="micro">Folio — selected work</p>
+  <h1 data-reveal>The <em>folio.</em></h1>
+  <p class="lede" data-reveal>
+    Features from the studio's recent volumes — launches, films, always-on programs, and integrated campaigns.
+  </p>
+</section>
+
+<section class="spread green-deep">
+  <div class="folio-list">
+    {% for p in projects %}
+    <article class="feature" data-reveal>
+      <div class="feature-image" style="--cover:{{ p.cover_color }}">
+        <img src="{{ p.image_url }}" alt="{{ p.title }} — {{ p.client }}" loading="lazy">
+        <span class="feature-num">№ {{ forloop.counter|stringformat:"03d" }}</span>
+      </div>
+      <div class="feature-body">
+        <p class="micro">{{ p.client }} · {{ p.category }} · {{ p.year }}</p>
+        <h2>{{ p.title }}</h2>
+        <p class="excerpt">{{ p.summary }}</p>
+        <p>{{ p.body }}</p>
+        <ul class="feature-tags">
+          {% for t in p.tag_list %}<li>{{ t }}</li>{% endfor %}
+        </ul>
+        <dl class="feature-metrics">
+          {% for k, v in p.metric_pairs %}<dt>{{ k }}</dt><dd>{{ v }}</dd>{% endfor %}
+        </dl>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="spread sand invite">
+  <h2 data-reveal>Want to be the next feature?<br><em>Begin the conversation.</em></h2>
+  <a href="/contact/" class="invite-cta">Write to the studio →</a>
+</section>
+
+{% endblock %}

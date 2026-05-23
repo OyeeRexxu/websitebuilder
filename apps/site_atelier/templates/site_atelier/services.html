@@ -1,0 +1,40 @@
+{% extends "site_atelier/base.html" %}
+{% block body %}
+
+<section class="spread sand page-head">
+  <p class="micro">Services — index</p>
+  <h1 data-reveal>The studio offers <em>five</em> disciplines.</h1>
+  <p class="lede" data-reveal>
+    Each capability is led by a senior practitioner. We staff small teams that stay with you through the entire arc of the work — strategy through final delivery.
+  </p>
+</section>
+
+<section class="spread green">
+  <div class="discipline-list">
+    {% for s in services %}
+    <article class="discipline" data-reveal>
+      <header class="discipline-head">
+        <p class="micro">Capability № {{ s.icon }}</p>
+        <h2>{{ s.title }}</h2>
+      </header>
+      <div class="discipline-body">
+        <p class="lede">{{ s.summary }}</p>
+        <p>{{ s.body }}</p>
+      </div>
+      <aside class="discipline-aside">
+        <p class="micro">Deliverables</p>
+        <ul>
+          {% for d in s.deliverable_list %}<li>{{ d }}</li>{% endfor %}
+        </ul>
+      </aside>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="spread sand invite">
+  <h2 data-reveal>A discipline that fits?<br><em>Begin the conversation.</em></h2>
+  <a href="/contact/" class="invite-cta">Write to the studio →</a>
+</section>
+
+{% endblock %}

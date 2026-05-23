@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.classList.add('js');</script>
+  {% include "_meta.html" %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=Inter:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/site_atelier/atelier.css">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="atelier">
+  {# Liquid SVG ink cursor — goo filter blobs that follow pointer #}
+  <div class="ink-cursor" aria-hidden="true">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" values="
+            1 0 0 0 0
+            0 1 0 0 0
+            0 0 1 0 0
+            0 0 0 22 -10" result="goo"/>
+          <feBlend in="SourceGraphic" in2="goo"/>
+        </filter>
+      </defs>
+      <g filter="url(#goo)" fill="#1B3A2F" id="ink-group">
+        <circle id="ink-1" cx="-100" cy="-100" r="1.6"/>
+        <circle id="ink-2" cx="-100" cy="-100" r="1.0"/>
+        <circle id="ink-3" cx="-100" cy="-100" r="0.7"/>
+      </g>
+    </svg>
+  </div>
+
+  <header class="masthead">
+    <a href="/" class="title-block">
+      <span class="title-mark">A.</span>
+      <span class="title-name">Atelier <em>Refraction</em></span>
+      <span class="title-sub">— issue ⅩⅩⅥ</span>
+    </a>
+    <nav class="masthead-nav">
+      <a href="/">Home</a>
+      <a href="/services/">Services</a>
+      <a href="/projects/">Folio</a>
+      <a href="/contact/">Contact</a>
+    </nav>
+    <div class="masthead-date">
+      <span data-clock></span>
+    </div>
+  </header>
+
+  <main>
+    {% block body %}{% endblock %}
+  </main>
+
+  <footer class="spread green-deep colophon">
+    <div class="colophon-inner">
+      <div class="colophon-grid">
+        <div>
+          <p class="micro">Editor</p>
+          <p class="serif">Studio Refraction, est. 2018.</p>
+        </div>
+        <div>
+          <p class="micro">Correspondence</p>
+          <p><a href="mailto:hello@studio-refraction.com">hello@studio-refraction.com</a></p>
+          <p><a href="tel:+10000000000">+1 (000) 000 0000</a></p>
+        </div>
+        <div>
+          <p class="micro">Other refractions</p>
+          <p>
+            <a href="http://pulse.localhost:8000/">Pulse</a> ·
+            <a href="http://orbit.localhost:8000/">Orbit</a> ·
+            <a href="http://signal.localhost:8000/">Signal</a> ·
+            <a href="http://quiet.localhost:8000/">Quiet</a>
+          </p>
+        </div>
+        <div>
+          <p class="micro">Colophon</p>
+          <p>Set in Cormorant Garamond &amp; Inter. Printed on warm sand and hunter green.</p>
+        </div>
+      </div>
+      <p class="copy">© Studio Refraction — Atelier edition.</p>
+    </div>
+  </footer>
+
+  <script src="/static/site_atelier/atelier.js" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

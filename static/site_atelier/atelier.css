@@ -1,0 +1,629 @@
+/* === ATELIER v2 — Wet Ink Press ===
+   Deep hunter green and warm sand alternating spreads. Liquid ink cursor.
+   Ink-bleed reveals. Heavy editorial weight.
+*/
+:root {
+  --atl-sand: #E8DEC9;        /* warm sand */
+  --atl-sand-deep: #C7B89A;   /* deeper sand */
+  --atl-green: #1B3A2F;       /* deep hunter green */
+  --atl-green-deep: #0E2017;  /* near-black green */
+  --atl-ink: #0E0A06;         /* near-black ink */
+  --atl-rust: #B43A2E;        /* old-print red accent */
+  --atl-gold: #C9A55B;        /* aged gold accent */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--atl-sand); color: var(--atl-ink); }
+body.atelier {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  cursor: none;
+}
+@media (hover: none) { body.atelier { cursor: auto; } }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: none; background: none; border: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+.serif { font-family: 'Cormorant Garamond', serif; }
+.italic { font-style: italic; }
+.micro {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: currentColor;
+  opacity: 0.65;
+}
+.rule { height: 1px; background: currentColor; width: 100%; margin: 32px 0; opacity: 0.25; }
+.rule.short { width: 48px; height: 1px; display: inline-block; margin: 0 12px 4px 0; vertical-align: middle; opacity: 0.5; }
+
+/* ---- Ink cursor — two SVG blobs that follow pointer + the wake of a stroke ---- */
+.ink-cursor { position: fixed; inset: 0; pointer-events: none; z-index: 9999; mix-blend-mode: multiply; }
+.ink-cursor svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ink-cursor circle { transition: r 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+/* ---- Masthead ---- */
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 20px 48px;
+  border-bottom: 1px solid rgba(14, 10, 6, 0.18);
+  position: sticky; top: 0; z-index: 100;
+  background: var(--atl-sand);
+}
+.title-block { display: flex; align-items: baseline; gap: 12px; }
+.title-mark { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 28px; font-style: italic; color: var(--atl-rust); }
+.title-name { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 18px; letter-spacing: 0.02em; }
+.title-name em { font-style: italic; color: var(--atl-rust); }
+.title-sub { font-family: 'DM Mono', monospace; font-size: 10px; opacity: 0.55; }
+
+.masthead-nav { display: flex; gap: 28px; justify-content: center; font-size: 13px; font-weight: 500; }
+.masthead-nav a { position: relative; padding-bottom: 4px; }
+.masthead-nav a::after { content: ""; position: absolute; left: 0; bottom: 0; right: 100%; height: 1px; background: var(--atl-rust); transition: right 0.4s cubic-bezier(0.7, 0, 0.3, 1); }
+.masthead-nav a:hover { color: var(--atl-rust); }
+.masthead-nav a:hover::after { right: 0; }
+
+.masthead-date {
+  text-align: right;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  opacity: 0.65;
+}
+
+/* ============================================================
+   SPREAD SYSTEM — alternating sand / green / sand
+   Every section is a "spread", with a duotone background.
+   ============================================================ */
+.spread { position: relative; padding: 96px 48px; overflow: hidden; }
+.spread.sand { background: var(--atl-sand); color: var(--atl-ink); }
+.spread.green { background: var(--atl-green); color: var(--atl-sand); }
+.spread.green-deep { background: var(--atl-green-deep); color: var(--atl-sand); }
+.spread.sand-deep { background: var(--atl-sand-deep); color: var(--atl-ink); }
+
+.spread.green .micro, .spread.green-deep .micro { color: var(--atl-gold); opacity: 1; }
+
+/* Paper-texture grain overlay on every spread */
+.spread::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='400' height='400' filter='url(%23n)'/></svg>");
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================
+   COVER — magazine cover spread, dramatic typographic + duotone
+   ============================================================ */
+.cover { min-height: 90vh; display: grid; grid-template-columns: 1.4fr 1fr; gap: 96px; align-items: center; padding: 120px 48px; }
+.cover-meta { display: flex; gap: 48px; margin-bottom: 48px; }
+.cover-headline {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(64px, 9.5vw, 160px);
+  line-height: 0.92;
+  letter-spacing: -0.025em;
+  margin-bottom: 48px;
+}
+.cover-headline em { font-style: italic; font-weight: 500; color: var(--atl-rust); }
+.cover-lede {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px;
+  line-height: 1.45;
+  max-width: 52ch;
+  margin-bottom: 48px;
+  font-weight: 400;
+}
+.cover-byline { margin-top: auto; }
+
+/* Cover figure — three printing plates (photographs with brand-color tint) */
+.cover-figure { position: relative; min-height: 600px; }
+.plate {
+  position: absolute;
+  width: 78%; aspect-ratio: 3/4;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.plate img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.plate::after {
+  /* Translucent color overlay — keeps each plate's brand character without killing the photo */
+  content: ""; position: absolute; inset: 0;
+  pointer-events: none;
+}
+.plate-1 {
+  top: 0; right: 30%;
+  transform: rotate(-3deg);
+  box-shadow: 0 30px 60px rgba(14, 32, 23, 0.5);
+}
+.plate-1::after {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), transparent 50%),
+    linear-gradient(135deg, var(--atl-green-deep) 0%, transparent 60%, rgba(14, 32, 23, 0.7) 100%);
+  opacity: 0.7;
+}
+.plate-2 {
+  top: 16%; right: 8%;
+  transform: rotate(2deg);
+  box-shadow: 0 30px 60px rgba(180, 58, 46, 0.4);
+}
+.plate-2::after {
+  background:
+    radial-gradient(circle at 70% 30%, rgba(0,0,0,0.2), transparent 50%),
+    linear-gradient(135deg, var(--atl-rust) 0%, transparent 55%, rgba(140, 30, 22, 0.6) 100%);
+  opacity: 0.65;
+}
+.plate-3 {
+  top: 38%; right: 22%;
+  transform: rotate(-1deg);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.25);
+}
+.plate-3::after {
+  background:
+    radial-gradient(circle at 40% 60%, rgba(0,0,0,0.18), transparent 50%),
+    linear-gradient(135deg, var(--atl-sand-deep) 0%, transparent 60%, rgba(199, 184, 154, 0.4) 100%);
+  opacity: 0.55;
+}
+.caption {
+  position: absolute; bottom: 0; right: 0;
+  max-width: 320px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.45;
+  padding-top: 16px;
+  border-top: 1px solid currentColor;
+  background: var(--atl-sand);
+  padding: 16px;
+}
+
+/* ============================================================
+   STORY — drop-cap + aside on GREEN spread
+   ============================================================ */
+.story-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 96px;
+  max-width: 1280px;
+  margin: 0 auto;
+  align-items: start;
+}
+.dropcap {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(26px, 2.6vw, 34px);
+  line-height: 1.5;
+  font-weight: 400;
+}
+.dropcap .cap {
+  float: left;
+  font-size: 6em;
+  line-height: 0.82;
+  margin: 8px 16px 0 0;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--atl-gold);
+}
+.story-aside {
+  padding: 32px;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.18);
+}
+.story-aside .serif { font-size: 24px; line-height: 1.4; margin: 16px 0; }
+.story-aside .byline { margin-top: 16px; }
+
+/* ============================================================
+   SECTION HEADS
+   ============================================================ */
+.section-head { padding: 96px 48px 48px; max-width: 1280px; margin: 0 auto; border-bottom: 1px solid currentColor; }
+.section-head .micro { margin-bottom: 16px; }
+.section-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(48px, 6vw, 96px);
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+.section-head h2 em { font-style: italic; color: var(--atl-rust); }
+.spread.green .section-head h2 em { color: var(--atl-gold); }
+
+/* ============================================================
+   FOLIO PREVIEW — duotone covers, staggered layout
+   ============================================================ */
+.folio-preview { padding-bottom: 96px; }
+.folio-grid {
+  padding: 64px 48px 0;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 96px 64px;
+}
+.folio-card { display: flex; flex-direction: column; }
+.folio-card:nth-child(even) { padding-top: 96px; }
+.folio-cover {
+  aspect-ratio: 4/5;
+  background: var(--cover);
+  position: relative;
+  margin-bottom: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.25);
+}
+.folio-cover img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  /* No blend mode, no grayscale — show a real photograph */
+}
+.folio-cover::before {
+  /* Soft corner color wash so each plate still carries a brand accent */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--cover) 0%, transparent 55%);
+  opacity: 0.45;
+  z-index: 1;
+  pointer-events: none;
+}
+.folio-cover::after {
+  /* Paper grain — kept but light so image remains legible */
+  content: ""; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='0.4'/></svg>");
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  z-index: 2;
+  pointer-events: none;
+}
+.folio-num { z-index: 3; }
+.folio-num {
+  position: absolute; top: 16px; left: 16px;
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: rgba(255,255,255,0.95); letter-spacing: 0.18em;
+  background: rgba(0,0,0,0.4); padding: 4px 10px; border-radius: 4px;
+}
+.folio-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 40px;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.folio-card .micro { margin-bottom: 16px; opacity: 0.7; }
+.folio-card .excerpt { font-family: 'Cormorant Garamond', serif; font-size: 20px; line-height: 1.45; margin-bottom: 24px; max-width: 40ch; }
+.folio-card .read { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; border-bottom: 1px solid currentColor; padding-bottom: 4px; align-self: start; }
+
+/* ============================================================
+   CAPABILITIES — on green-deep spread
+   ============================================================ */
+.capability-list {
+  max-width: 1280px;
+  margin: 64px auto 0;
+  padding: 0 48px;
+}
+.capability {
+  display: grid;
+  grid-template-columns: 80px 1fr 2fr;
+  gap: 48px;
+  padding: 48px 0;
+  border-top: 1px solid currentColor;
+  align-items: baseline;
+}
+.capability:last-child { border-bottom: 1px solid currentColor; }
+.capability-num { font-family: 'DM Mono', monospace; font-size: 12px; opacity: 0.6; }
+.capability h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  font-size: clamp(34px, 3.5vw, 56px);
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+.capability h3 em { font-style: italic; color: var(--atl-gold); }
+.capability p { font-family: 'Cormorant Garamond', serif; font-size: 24px; line-height: 1.45; }
+
+/* ============================================================
+   PRESS QUOTES — three columns, on sand-deep spread
+   Each quote: small editorial photo, horizontal rule, italic quote, byline.
+   ============================================================ */
+.quote-spread {
+  /* .spread already provides 96px padding; only horizontal padding needed here */
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.press-quote {
+  display: flex; flex-direction: column;
+}
+.press-quote-image {
+  aspect-ratio: 4/3;
+  margin-bottom: 32px;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+  position: relative;
+}
+.press-quote-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.press-quote:hover .press-quote-image img { transform: scale(1.04); }
+.press-quote blockquote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  position: relative;
+  margin-bottom: 24px;
+  padding-top: 28px;
+  border-top: 2px solid currentColor;
+}
+.press-quote .open-quote, .press-quote .close-quote { color: var(--atl-rust); font-size: 1.4em; line-height: 0; vertical-align: -0.2em; }
+.press-quote figcaption { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.7; }
+
+/* ============================================================
+   INVITE (CTA) — dramatic full-bleed
+   ============================================================ */
+.invite {
+  padding: 160px 48px;
+  text-align: center;
+}
+.invite h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(56px, 8vw, 144px);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  margin-bottom: 48px;
+}
+.invite h2 em { font-style: italic; color: var(--atl-rust); }
+.spread.green .invite h2 em { color: var(--atl-gold); }
+.invite-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 18px 36px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.22em;
+  transition: background 0.35s, color 0.35s, transform 0.35s;
+}
+.invite-cta:hover { background: currentColor; color: var(--atl-sand); transform: translateY(-2px); }
+.spread.sand .invite-cta:hover { color: var(--atl-sand); background: var(--atl-ink); border-color: var(--atl-ink); }
+.spread.green .invite-cta:hover { color: var(--atl-green); background: var(--atl-gold); border-color: var(--atl-gold); }
+
+/* ============================================================
+   PAGE HEAD — dramatic typographic cover for non-home pages
+   ============================================================ */
+.page-head {
+  padding: 144px 48px 96px;
+  max-width: 1440px; margin: 0 auto;
+}
+.page-head .micro { margin-bottom: 32px; }
+.page-head h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(72px, 11vw, 200px);
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+}
+.page-head h1 em { font-style: italic; color: var(--atl-rust); }
+.spread.green .page-head h1 em { color: var(--atl-gold); }
+.page-head .lede {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; line-height: 1.45;
+  max-width: 60ch;
+  margin-top: 48px;
+}
+
+/* ============================================================
+   DISCIPLINE (services page)
+   ============================================================ */
+.discipline-list { padding: 0 48px 96px; max-width: 1440px; margin: 0 auto; }
+.discipline {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 64px;
+  padding: 96px 0;
+  border-bottom: 1px solid currentColor;
+  align-items: start;
+}
+.discipline:first-of-type { border-top: 1px solid currentColor; }
+.discipline-head .micro { margin-bottom: 16px; }
+.discipline-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(40px, 5vw, 80px);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.spread.green .discipline-head h2 { color: var(--atl-gold); }
+.discipline-body .lede { font-family: 'Cormorant Garamond', serif; font-size: 24px; line-height: 1.45; margin-bottom: 24px; }
+.discipline-body p { font-size: 17px; line-height: 1.6; max-width: 56ch; opacity: 0.92; }
+.discipline-aside .micro { margin-bottom: 12px; }
+.discipline-aside ul { list-style: none; }
+.discipline-aside li { padding: 10px 0; border-top: 1px dotted currentColor; font-family: 'Cormorant Garamond', serif; font-size: 18px; }
+.discipline-aside li:last-child { border-bottom: 1px dotted currentColor; }
+
+/* ============================================================
+   FEATURE (projects page)
+   ============================================================ */
+.folio-list { padding: 0 48px 96px; max-width: 1440px; margin: 0 auto; }
+.feature {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 96px;
+  padding: 120px 0;
+  border-bottom: 1px solid currentColor;
+  align-items: center;
+}
+.feature:first-of-type { border-top: 1px solid currentColor; }
+.feature:nth-child(even) .feature-image { order: 2; }
+.feature:nth-child(even) .feature-body { order: 1; }
+.feature-image {
+  aspect-ratio: 4/5;
+  background: var(--cover);
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  overflow: hidden;
+}
+.feature-image img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  /* No blend mode, no grayscale — show a real photograph */
+}
+.feature-image::before {
+  /* Soft corner color wash */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--cover) 0%, transparent 55%);
+  opacity: 0.45;
+  z-index: 1;
+  pointer-events: none;
+}
+.feature-image::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='0.4'/></svg>");
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  z-index: 2;
+  pointer-events: none;
+}
+.feature-num { z-index: 3; }
+.feature-num {
+  position: absolute; top: 16px; left: 16px;
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  background: rgba(0,0,0,0.4); color: #fff; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.2em;
+}
+.feature-body .micro { margin-bottom: 16px; opacity: 0.7; }
+.feature-body h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400; font-style: italic;
+  font-size: clamp(56px, 7vw, 112px);
+  letter-spacing: -0.02em; line-height: 1;
+  margin-bottom: 24px;
+}
+.spread.green .feature-body h2 { color: var(--atl-gold); }
+.feature-body .excerpt { font-family: 'Cormorant Garamond', serif; font-size: 26px; line-height: 1.4; margin-bottom: 16px; }
+.feature-body p { font-size: 17px; line-height: 1.65; margin-bottom: 24px; max-width: 56ch; opacity: 0.92; }
+.feature-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.feature-tags li { font-family: 'DM Mono', monospace; font-size: 11px; padding: 4px 12px; border: 1px solid currentColor; letter-spacing: 0.15em; border-radius: 999px; opacity: 0.85; }
+.feature-metrics { display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; padding-top: 24px; border-top: 1px solid currentColor; }
+.feature-metrics dt { font-family: 'DM Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.7; }
+.feature-metrics dd { font-family: 'Cormorant Garamond', serif; font-size: 20px; }
+
+/* ============================================================
+   LETTER (contact) — handwritten letter style
+   ============================================================ */
+.letter { padding: 64px 48px 120px; max-width: 1440px; margin: 0 auto; }
+.letter-grid {
+  display: grid; grid-template-columns: 2fr 1fr; gap: 96px; align-items: start;
+}
+.letter-form { font-family: 'Cormorant Garamond', serif; font-size: 30px; line-height: 1.65; }
+.form-line { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; }
+.form-line.full { flex-direction: column; align-items: stretch; }
+.form-label { font-style: italic; opacity: 0.7; }
+.letter-form input, .letter-form textarea, .letter-form select {
+  flex: 1; font: inherit; background: transparent; border: none;
+  border-bottom: 1px dashed currentColor; padding: 4px 0;
+  color: currentColor; cursor: none;
+}
+.letter-form textarea { min-height: 140px; border: 1px dashed currentColor; padding: 12px; }
+.letter-form input:focus, .letter-form textarea:focus, .letter-form select:focus { outline: none; border-color: var(--atl-rust); }
+
+/* Dropdown — strip native UI, add custom chevron, match dark green theme */
+.letter-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 32px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path fill='%23C9A55B' d='M3 6l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 18px 18px;
+  cursor: none;
+}
+/* The expanded option list — limited control across browsers, but these
+   work in modern Chrome/Firefox/Edge to keep the panel on-brand. */
+.letter-form select option {
+  background-color: var(--atl-green-deep);
+  color: var(--atl-sand);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  padding: 10px 12px;
+}
+.letter-form select option:checked,
+.letter-form select option:hover {
+  background: var(--atl-rust);
+  color: var(--atl-sand);
+}
+.letter-aside { padding: 32px; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; }
+.letter-aside .micro { margin: 16px 0 4px; }
+.letter-aside .large { font-size: 26px; font-style: italic; }
+.flash {
+  font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 600;
+  padding: 12px; background: var(--atl-rust); color: var(--atl-sand);
+  margin-bottom: 16px; letter-spacing: 0.18em; text-transform: uppercase;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   COLOPHON (footer) — on green-deep
+   ============================================================ */
+.colophon { padding: 96px 48px 48px; }
+.colophon-inner { max-width: 1280px; margin: 0 auto; }
+.colophon-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; padding: 32px 0; }
+.colophon-grid .micro { margin-bottom: 12px; }
+.colophon-grid p { font-size: 14px; line-height: 1.5; opacity: 0.85; }
+.colophon-grid a:hover { color: var(--atl-gold); }
+.copy { text-align: center; padding-top: 32px; font-family: 'DM Mono', monospace; font-size: 11px; opacity: 0.6; letter-spacing: 0.22em; text-transform: uppercase; }
+
+/* ============================================================
+   REVEAL — hidden only when JS confirmed running.
+   .no-js fallback keeps content visible if anything fails.
+   ============================================================ */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1.1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+html.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .cover, .story-grid, .discipline, .feature, .letter-grid { grid-template-columns: 1fr; gap: 48px; }
+  .cover { padding: 64px 24px; }
+  .cover-figure { min-height: 480px; }
+  .masthead { grid-template-columns: 1fr auto; padding: 16px 24px; }
+  .masthead-date { display: none; }
+  .masthead-nav { gap: 16px; font-size: 12px; }
+  .quote-spread { grid-template-columns: 1fr; padding: 64px 24px; }
+  .folio-grid { grid-template-columns: 1fr; padding: 32px 24px; }
+  .folio-card:nth-child(even) { padding-top: 0; }
+  .feature:nth-child(even) .feature-image { order: 1; }
+  .feature:nth-child(even) .feature-body { order: 2; }
+  .colophon-grid { grid-template-columns: 1fr 1fr; }
+  .spread { padding: 64px 24px; }
+  .invite { padding: 96px 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1; transform: none; }
+  body.atelier { cursor: auto; }
+  .ink-cursor { display: none; }
+}

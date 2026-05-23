@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.classList.add('js');</script>
+  {% include "_meta.html" %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/site_quiet/quiet.css">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="quiet">
+  <div class="spotlight" aria-hidden="true"></div>
+  <div class="spotlight-warm" aria-hidden="true"></div>
+  <div data-barba="wrapper">
+  <header class="qnav">
+    <a href="/" class="qbrand">
+      <span class="qbrand-mark">●</span>
+      <span class="qbrand-name">Quiet</span>
+    </a>
+    <nav class="qnav-links">
+      <a href="/" data-link>Home</a>
+      <a href="/services/" data-link>Services</a>
+      <a href="/projects/" data-link>Work</a>
+      <a href="/contact/" data-link class="qnav-cta" data-magnetic>Start →</a>
+    </nav>
+  </header>
+
+  <main data-barba="container" data-barba-namespace="{% block barba_ns %}default{% endblock %}">
+    {% block body %}{% endblock %}
+  </main>
+
+  <footer class="qfoot">
+    <div class="qfoot-inner">
+      <div class="qfoot-card qfoot-cta">
+        <p class="qfoot-pretitle">Have a project?</p>
+        <h2>Let's <em>talk.</em></h2>
+        <a href="/contact/" class="qbtn qbtn--solid" data-magnetic>Start a conversation</a>
+      </div>
+      <div class="qfoot-grid">
+        <div class="qfoot-card">
+          <p class="qfoot-label">Email</p>
+          <a href="mailto:hello@studio-refraction.com">hello@studio-refraction.com</a>
+        </div>
+        <div class="qfoot-card">
+          <p class="qfoot-label">Phone</p>
+          <a href="tel:+10000000000">+1 (000) 000 0000</a>
+        </div>
+        <div class="qfoot-card">
+          <p class="qfoot-label">Studios</p>
+          <p>Brooklyn · London · Mumbai</p>
+        </div>
+        <div class="qfoot-card">
+          <p class="qfoot-label">Other refractions</p>
+          <p>
+            <a href="http://pulse.localhost:8000/">Pulse</a>,
+            <a href="http://atelier.localhost:8000/">Atelier</a>,
+            <a href="http://orbit.localhost:8000/">Orbit</a>,
+            <a href="http://signal.localhost:8000/">Signal</a>
+          </p>
+        </div>
+      </div>
+      <p class="qfoot-meta">© Studio Refraction — Quiet edition.</p>
+    </div>
+  </footer>
+  </div>{# /barba-wrapper #}
+
+  <script src="https://cdn.jsdelivr.net/npm/@barba/core@2.10.3/dist/barba.umd.js" defer></script>
+  <script src="/static/site_quiet/quiet.js" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

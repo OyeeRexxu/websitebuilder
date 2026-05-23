@@ -1,0 +1,37 @@
+{% extends "site_signal/base.html" %}
+{% block body %}
+
+<section class="cabinet cabinet-bezel">
+<div class="page-head">
+  <p class="micro">CH.02 — SERVICES.INDEX</p>
+  <h1>
+    <span>FIVE.WAYS</span>
+    <span class="accent">TO.SHIP</span>
+    <span>THE.WORK</span>
+  </h1>
+</div>
+</section>
+
+<section class="services-deep">
+  {% for s in services %}
+  <article class="service-deep" data-reveal style="--accent:{{ s.accent_color|default:'#FF00C8' }}">
+    <div class="service-deep-head">
+      <span class="service-num">CH.{{ s.icon }}</span>
+      <span class="service-led"></span>
+      <h2>{{ s.title }}</h2>
+    </div>
+    <p class="lede">{{ s.summary }}</p>
+    <p class="body">{{ s.body }}</p>
+    <ul class="deliverables">
+      {% for d in s.deliverable_list %}<li>▸ {{ d }}</li>{% endfor %}
+    </ul>
+  </article>
+  {% endfor %}
+</section>
+
+<section class="signal-cta">
+  <h2>WANT.ALL.FIVE?</h2>
+  <a href="/contact/" class="btn btn--primary btn--giant">Tap in &gt;&gt;</a>
+</section>
+
+{% endblock %}

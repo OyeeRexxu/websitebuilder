@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.classList.add('js');</script>
+  {% include "_meta.html" %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Major+Mono+Display&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/site_signal/signal.css">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="signal">
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="scanbeam" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="topbar-row">
+      <div class="topbar-left">
+        <span class="status-led"></span>
+        <span class="status-text">SIGNAL ACQUIRED</span>
+        <span class="status-meta" data-clock>—</span>
+      </div>
+      <a href="/" class="logo">
+        <span class="logo-ch">S</span><span class="logo-ch">I</span><span class="logo-ch">G</span><span class="logo-ch">N</span><span class="logo-ch">A</span><span class="logo-ch">L</span>
+        <span class="logo-tm">©26</span>
+      </a>
+      <div class="topbar-right">
+        <span class="status-text">CH.05 / 05</span>
+        <span class="status-meta">REC ●</span>
+      </div>
+    </div>
+    <nav class="navbar">
+      <a href="/" data-scramble>Home</a>
+      <a href="/services/" data-scramble>Services</a>
+      <a href="/projects/" data-scramble>Drops</a>
+      <a href="/contact/" data-scramble class="cta">Tap in &gt;&gt;</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block body %}{% endblock %}
+  </main>
+
+  <footer class="endcard">
+    <div class="marquee marquee-foot">
+      <div class="marquee-track">
+        <span>SIGNAL // SIGNAL // SIGNAL // SIGNAL // SIGNAL // SIGNAL //</span>
+        <span>SIGNAL // SIGNAL // SIGNAL // SIGNAL // SIGNAL // SIGNAL //</span>
+      </div>
+    </div>
+    <div class="endcard-inner">
+      <h2 class="endcard-title" data-glitch="STAY  GLITCHY.">STAY  GLITCHY.</h2>
+      <div class="endcard-grid">
+        <div>
+          <p class="micro">Tap in</p>
+          <a href="mailto:hello@studio-refraction.com">hello@studio-refraction.com</a><br>
+          <a href="tel:+10000000000">+1 (000) 000 0000</a>
+        </div>
+        <div>
+          <p class="micro">Where</p>
+          <p>Brooklyn · London · Mumbai</p>
+        </div>
+        <div>
+          <p class="micro">Following</p>
+          <p><a href="#">IG</a> · <a href="#">TT</a> · <a href="#">YT</a></p>
+        </div>
+        <div>
+          <p class="micro">Other refractions</p>
+          <p>
+            <a href="http://pulse.localhost:8000/">Pulse</a> ·
+            <a href="http://atelier.localhost:8000/">Atelier</a> ·
+            <a href="http://orbit.localhost:8000/">Orbit</a> ·
+            <a href="http://quiet.localhost:8000/">Quiet</a>
+          </p>
+        </div>
+      </div>
+      <p class="endcard-meta">© Studio Refraction — Signal edition · NTSC · 4:3</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js" defer></script>
+  <script src="/static/site_signal/signal.js" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

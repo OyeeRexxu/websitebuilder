@@ -1,0 +1,112 @@
+{% extends "site_atelier/base.html" %}
+{% block body %}
+
+<section class="spread sand cover">
+  <div class="cover-grid">
+    <div class="cover-meta">
+      <p class="micro">Volume 26 — Brand storytelling</p>
+      <p class="micro">May 2026 — Brooklyn / London / Mumbai</p>
+    </div>
+    <h1 class="cover-headline" data-reveal>
+      The quiet<br>
+      <em>art</em> of being<br>
+      memorable.
+    </h1>
+    <p class="cover-lede" data-reveal>
+      A full-service digital marketing studio for brands that want to be remembered, not just seen. Social,
+      production, influencer, and integrated campaigns — assembled by a small team that has worked together
+      for a long time.
+    </p>
+    <p class="cover-byline" data-reveal>
+      <span class="rule short"></span>
+      <span class="micro">Refraction Studio — folio &amp; manifesto</span>
+    </p>
+  </div>
+
+  <div class="cover-figure">
+    <div class="plate plate-1"><img src="/static/images/projects/2.jpg" alt="" loading="lazy"></div>
+    <div class="plate plate-2"><img src="/static/images/projects/5.jpg" alt="" loading="lazy"></div>
+    <div class="plate plate-3"><img src="/static/images/projects/4.jpg" alt="" loading="lazy"></div>
+    <figcaption class="caption">
+      <em>Figure 01.</em> Three printing plates, photographed in studio. The work, as we like to think of it: layered, precise, and pressed together until it leaves a mark.
+    </figcaption>
+  </div>
+</section>
+
+<section class="spread green">
+  <div class="story-grid">
+    <p class="dropcap" data-reveal>
+      <span class="cap">W</span>e are a digital marketing studio — but we treat the work like a magazine. Every campaign is an issue. Every brand is a feature. Every shoot, an editorial. The structure forces taste; it makes us choose what matters.
+    </p>
+    <aside class="story-aside" data-reveal>
+      <p class="micro">A note from the editor</p>
+      <p class="serif italic">
+        "Most brands have something interesting to say. Our job is to say less of the boring parts and more of the interesting ones."
+      </p>
+      <p class="micro byline">— Founder, Studio Refraction</p>
+    </aside>
+  </div>
+</section>
+
+<section class="spread sand folio-preview">
+  <header class="section-head">
+    <p class="micro">From the folio</p>
+    <h2 data-reveal>Selected <em>features.</em></h2>
+  </header>
+  <div class="folio-grid">
+    {% for p in projects %}
+    <article class="folio-card" data-reveal>
+      <div class="folio-cover" style="--cover:{{ p.cover_color }}">
+        <img src="{{ p.image_url }}" alt="{{ p.title }} — {{ p.client }}" loading="lazy">
+        <span class="folio-num">№ {{ forloop.counter|stringformat:"03d" }}</span>
+      </div>
+      <h3>{{ p.title }}</h3>
+      <p class="micro">{{ p.client }} · {{ p.category }} · {{ p.year }}</p>
+      <p class="excerpt">{{ p.summary }}</p>
+      <a href="/projects/" class="read">Read the feature →</a>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="spread green-deep">
+  <header class="section-head">
+    <p class="micro">Capabilities</p>
+    <h2 data-reveal>Five disciplines,<br><em>one studio.</em></h2>
+  </header>
+  <div class="capability-list">
+    {% for s in services %}
+    <article class="capability" data-reveal>
+      <div class="capability-num">№ {{ s.icon }}</div>
+      <h3>{{ s.title }}</h3>
+      <p>{{ s.summary }}</p>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="spread sand-deep">
+  <div class="quote-spread">
+    {% for t in testimonials %}
+    <figure class="press-quote" data-reveal>
+      <div class="press-quote-image">
+        <img src="{{ t.image_url }}" alt="" loading="lazy">
+      </div>
+      <blockquote>
+        <span class="open-quote">"</span>{{ t.quote }}<span class="close-quote">"</span>
+      </blockquote>
+      <figcaption>
+        <span class="rule short"></span>
+        {{ t.author }}, <em>{{ t.role }}</em>, {{ t.company }}
+      </figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="spread green invite">
+  <h2 data-reveal>Have a project in mind?<br><em>Begin the conversation.</em></h2>
+  <a href="/contact/" class="invite-cta">Write to the studio →</a>
+</section>
+
+{% endblock %}

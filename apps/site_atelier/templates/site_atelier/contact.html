@@ -1,0 +1,40 @@
+{% extends "site_atelier/base.html" %}
+{% block body %}
+
+<section class="spread sand page-head">
+  <p class="micro">Correspondence — letter to the editor</p>
+  <h1 data-reveal>Write to the <em>studio.</em></h1>
+  <p class="lede" data-reveal>
+    Tell us about your brand, your ambition, and the work you'd like to do. We read every letter and reply within one working day — always to a human.
+  </p>
+</section>
+
+<section class="spread green letter">
+  <div class="letter-grid">
+    <form method="post" class="letter-form">
+      {% csrf_token %}
+      {% if messages %}{% for m in messages %}<p class="flash">{{ m }}</p>{% endfor %}{% endif %}
+
+      <p class="form-line"><span class="form-label">To the editor,</span></p>
+      <p class="form-line"><span class="form-label">My name is</span>{{ form.name }}</p>
+      <p class="form-line"><span class="form-label">and I represent</span>{{ form.company }}</p>
+      <p class="form-line"><span class="form-label">You can reach me at</span>{{ form.email }}</p>
+      <p class="form-line"><span class="form-label">Our project budget is around</span>{{ form.budget }}</p>
+      <p class="form-line full"><span class="form-label">I'd like to talk about —</span>{{ form.message }}</p>
+      <p class="form-line"><span class="form-label">Yours,</span></p>
+      <button class="invite-cta" type="submit">Send the letter →</button>
+    </form>
+
+    <aside class="letter-aside">
+      <p class="micro">Or, more directly</p>
+      <p><a href="mailto:hello@studio-refraction.com" class="serif large">hello@studio-refraction.com</a></p>
+      <p class="rule short"></p>
+      <p class="micro">Studio hours</p>
+      <p>Monday — Friday, 09:00 — 19:00 local.</p>
+      <p class="micro">Press</p>
+      <p>press@studio-refraction.com</p>
+    </aside>
+  </div>
+</section>
+
+{% endblock %}

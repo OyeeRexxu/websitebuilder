@@ -1,0 +1,42 @@
+{% extends "site_quiet/base.html" %}
+{% block barba_ns %}contact{% endblock %}
+{% block body %}
+
+<section class="qpage-head" data-reveal>
+  <p class="qkicker">Contact</p>
+  <h1>Start a <em>conversation.</em></h1>
+  <p class="qlede">Tell us about your brand, your timeline, and your ambition. We reply within one working day — always to a human.</p>
+</section>
+
+<section class="qcontact">
+  <div class="qcontact-grid">
+    <form method="post" class="qform">
+      {% csrf_token %}
+      {% if messages %}{% for m in messages %}<p class="qflash">{{ m }}</p>{% endfor %}{% endif %}
+      <div class="qform-grid">
+        <label><span>Name</span>{{ form.name }}</label>
+        <label><span>Email</span>{{ form.email }}</label>
+        <label><span>Company</span>{{ form.company }}</label>
+        <label><span>Budget</span>{{ form.budget }}</label>
+      </div>
+      <label class="qfull"><span>Tell us about the project</span>{{ form.message }}</label>
+      <button type="submit" class="qbtn qbtn--solid" data-magnetic>Send →</button>
+    </form>
+    <aside class="qcontact-aside">
+      <div class="qcard">
+        <p class="qcard-label">Email</p>
+        <a href="mailto:hello@studio-refraction.com" class="qbig">hello@studio-refraction.com</a>
+      </div>
+      <div class="qcard">
+        <p class="qcard-label">Studio hours</p>
+        <p>Mon — Fri, 09:00 — 19:00 local</p>
+      </div>
+      <div class="qcard">
+        <p class="qcard-label">Time zones</p>
+        <p>EST · GMT · IST</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+{% endblock %}
