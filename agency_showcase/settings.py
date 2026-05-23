@@ -2,28 +2,27 @@
 Django settings for the multi-site agency showcase.
 One Django project, 5 dramatically different design apps, served via Host-based
 subdomain routing (pulse.localhost, atelier.localhost, etc.).
-
-Environment variables (via .env or shell) override defaults for production.
 """
-import os
 from pathlib import Path
-
-import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# django-environ: read .env file if present, fall back to OS env vars
-env = environ.Env(
-    DEBUG=(bool, False),
-    ALLOWED_HOSTS=(list, ["*"]),
-)
-environ.Env.read_env(BASE_DIR / ".env", overwrite=False)
-
-SECRET_KEY = env("SECRET_KEY", default="dev-secret-not-for-production-change-me")
-DEBUG = env("DEBUG", default=True)
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["*"])
+SECRET_KEY = "dev-secret-not-for-production-change-me"
+DEBUG = True
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "pulse.localhost",
+    "atelier.localhost",
+    "orbit.localhost",
+    "signal.localhost",
+    "quiet.localhost",
+    ".localhost",
+]
 
 # Map Host header subdomains -> per-site URLconf modules.
+# A request to pulse.localhost is routed through apps.site_pulse.urls only.
+# A request to localhost (no subdomain) hits the landing index.
 SUBDOMAIN_URLCONFS = {
     "pulse": "apps.site_pulse.urls",
     "atelier": "apps.site_atelier.urls",
@@ -136,20 +135,9 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Email: console backend for dev; override EMAIL_* vars in .env for production.
-EMAIL_BACKEND = env(
-    "EMAIL_BACKEND",
-    default="django.core.mail.backends.console.EmailBackend",
-)
+# Email: console backend for dev (contact form notifications, if enabled later).
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Canonical site origin (used for absolute URLs in sitemaps & OG tags).
-CANONICAL_HOST = env("CANONICAL_HOST", default="localhost:8000")
-CANONICAL_SCHEME = env("CANONICAL_SCHEME", default="http")
-
-# Security hardening for production
-if not DEBUG:
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = "DENY"
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+CANONICAL_HOST = "localhost:8000"
+CANONICAL_SCHEME = "http"
